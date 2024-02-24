@@ -100,15 +100,15 @@ export async function getServerSideProps(context) {
     luxaryHotelData = [];
 
   if (pageData) {
-    // pageData.forEach((item, key) => {
-    //   if (item.name === 'locationData') {
-    //     locationData = item.data ? [...item.data] : [];
-    //   } else if (item.name === 'topHotelData') {
-    //     topHotelData = item.data ? [...item.data] : [];
-    //   } else if (item.name === 'luxaryHotelData') {
-    //     luxaryHotelData = item.data ? [...item.data] : [];
-    //   }
-    // });
+    pageData.forEach((item, key) => {
+      if (item.name === 'locationData') {
+        locationData = item.data ? [...item.data] : [];
+      } else if (item.name === 'topHotelData') {
+        topHotelData = item.data ? [...item.data] : [];
+      } else if (item.name === 'luxaryHotelData') {
+        luxaryHotelData = item.data ? [...item.data] : [];
+      }
+    });
   }
   return {
     props: { deviceType, locationData, topHotelData, luxaryHotelData },

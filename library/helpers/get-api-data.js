@@ -47,6 +47,7 @@ export const paginator = (posts, processedData, limit) => {
 };
 
 export const getAPIData = async (apiUrl) => {
+  console.log("apiUrl: " + apiUrl);
   const promises = apiUrl.map(async (repo) => {
     const apiPath = `${process.env.NEXT_PUBLIC_SERVER_API}/data`;
     const api = `${apiPath}/${repo.endpoint}.json`;

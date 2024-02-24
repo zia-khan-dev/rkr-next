@@ -51,12 +51,11 @@ const HomeSearch = ({ searchTitleStyle, searchDescriptionStyle }) => {
         <SearchWrapper>
           <Heading
             {...searchTitleStyle}
-            content="Latest reviews. Lowest prices."
+            content="Receiving Points Near You"
           />
           <Text
             {...searchDescriptionStyle}
-            content="compares prices from 200+ booking sites to help you find the lowest
-      price on the right hotel for you."
+            content="Compare the prices near at your location"
           />
           <SearchForm />
         </SearchWrapper>
