@@ -1,16 +1,16 @@
-import React, { useState, useContext } from 'react';
-import Link from 'next/link';
-import { withRouter } from 'next/router';
-import dynamic from 'next/dynamic';
-import Sticky from 'react-stickynode';
-import { IoIosClose } from 'react-icons/io';
-import Logo from 'components/UI/Logo/Logo';
-import Text from 'components/UI/Text/Text';
-import { Button, Drawer } from 'antd';
-import Navbar from 'components/Navbar/Navbar';
-import { LayoutContext } from 'context/LayoutProvider';
-import { AuthContext } from 'context/AuthProvider';
-import { AGENT_PROFILE_PAGE } from 'settings/constant';
+import React, { useState, useContext } from "react";
+import Link from "next/link";
+import { withRouter } from "next/router";
+import dynamic from "next/dynamic";
+import Sticky from "react-stickynode";
+import { IoIosClose } from "react-icons/io";
+import Logo from "components/UI/Logo/Logo";
+import Text from "components/UI/Text/Text";
+import { Button, Drawer } from "antd";
+import Navbar from "components/Navbar/Navbar";
+import { LayoutContext } from "context/LayoutProvider";
+import { useSelector } from "react-redux";
+import { AGENT_PROFILE_PAGE } from "settings/constant";
 import HeaderWrapper, {
   MobileNavbar,
   CloseDrawer,
@@ -18,16 +18,16 @@ import HeaderWrapper, {
   AvatarImage,
   AvatarInfo,
   LogoArea,
-} from './Header.style';
+} from "./Header.style";
 
-const AuthMenu = dynamic(() => import('./AuthMenu'));
-const MainMenu = dynamic(() => import('./MainMenu'));
-const MobileMenu = dynamic(() => import('./MobileMenu'));
-const ProfileMenu = dynamic(() => import('./ProfileMenu'));
-const NavbarSearch = dynamic(() => import('./NavbarSearch'));
+const AuthMenu = dynamic(() => import("./AuthMenu"));
+const MainMenu = dynamic(() => import("./MainMenu"));
+const MobileMenu = dynamic(() => import("./MobileMenu"));
+const ProfileMenu = dynamic(() => import("./ProfileMenu"));
+const NavbarSearch = dynamic(() => import("./NavbarSearch"));
 
 const avatarImg =
-  'http://s3.amazonaws.com/redqteam.com/isomorphic-reloaded-image/profilepic.png';
+  "http://s3.amazonaws.com/redqteam.com/isomorphic-reloaded-image/profilepic.png";
 
 const LogoIcon = () => (
   <svg width="25" height="27.984" viewBox="0 0 25 27.984">
@@ -42,14 +42,16 @@ const LogoIcon = () => (
 );
 
 const Header = ({ router }) => {
-  const { loggedIn } = useContext(AuthContext);
+  // const { loggedIn } = useContext(AuthContext);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
   const [{ searchVisibility }] = useContext(LayoutContext);
   const [state, setState] = useState(false);
   const sidebarHandler = () => {
     setState((state) => !state);
   };
 
-  const headerType = router.pathname === '/' ? 'transparent' : 'default';
+  const headerType = router.pathname === "/" ? "transparent" : "default";
 
   return (
     <HeaderWrapper>
@@ -57,18 +59,18 @@ const Header = ({ router }) => {
         <Navbar
           logo={
             <>
-              {headerType === 'transparent' && <LogoIcon />}
+              {headerType === "transparent" && <LogoIcon />}
               <Logo
                 withLink
                 linkTo="/"
-                src="/images/logo-alt.svg"
+                src="/images/logod-alt.svg"
                 title="TripFinder."
               />
             </>
           }
           navMenu={<MainMenu />}
           authMenu={<AuthMenu />}
-          isLogin={loggedIn}
+          isLogin={isLoggedIn}
           avatar={<Logo src={avatarImg} />}
           profileMenu={<ProfileMenu avatar={<Logo src={avatarImg} />} />}
           headerType={headerType}
@@ -79,7 +81,7 @@ const Header = ({ router }) => {
         <MobileNavbar className={headerType}>
           <LogoArea>
             <>
-              {headerType === 'transparent' && <LogoIcon />}
+              {headerType === "transparent" && <LogoIcon />}
               <Logo
                 withLink
                 linkTo="/"
@@ -90,7 +92,7 @@ const Header = ({ router }) => {
             <NavbarSearch />
           </LogoArea>
           <Button
-            className={`hamburg-btn ${state ? 'active' : ''}`}
+            className={`hamburg-btn ${state ? "active" : ""}`}
             onClick={sidebarHandler}
           >
             <span />
@@ -110,7 +112,7 @@ const Header = ({ router }) => {
                 <IoIosClose />
               </button>
             </CloseDrawer>
-            {loggedIn ? (
+            {isLoggedIn ? (
               <AvatarWrapper>
                 <AvatarImage>
                   <Logo src={avatarImg} />

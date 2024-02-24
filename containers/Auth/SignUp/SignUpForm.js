@@ -5,9 +5,13 @@ import { Input, Switch, Button } from 'antd';
 import FormControl from 'components/UI/FormControl/FormControl';
 import { AuthContext } from 'context/AuthProvider';
 import { FieldWrapper, SwitchWrapper, Label } from '../Auth.style';
+import { useDispatch } from 'react-redux'; 
+import { signUpSuccess } from '../../../redux/features/authSlice';
+
 
 export default function SignUpForm() {
-  const { signUp } = useContext(AuthContext);
+  // const { signUp } = useContext(AuthContext);
+  const dispatch = useDispatch(); 
   const {
     control,
     watch,
@@ -19,7 +23,7 @@ export default function SignUpForm() {
   const password = watch('password');
   const confirmPassword = watch('confirmPassword');
   const onSubmit = (data) => {
-    signUp(data);
+    dispatch(signUpSuccess(data));
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
