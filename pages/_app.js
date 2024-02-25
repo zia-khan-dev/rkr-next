@@ -12,6 +12,8 @@ import AuthProvider from "context/AuthProvider";
 import { SearchProvider } from "context/SearchProvider";
 import { store } from "../redux/store";
 import { Provider } from "react-redux";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function App({ Component, router, pageProps }) {
   const { query } = router;
 
@@ -27,6 +29,7 @@ function App({ Component, router, pageProps }) {
           </ThemeProvider>
         </SearchProvider>
       </AuthProvider>
+      <ToastContainer />
     </Provider>
   );
 }

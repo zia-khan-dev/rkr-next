@@ -70,7 +70,6 @@ const authSlice = createSlice({
         // state.role = action.payload.user.roles;
         // state.error = null;
         state.isLoggedIn = true;
-        Router.push(`/`); // Redirect after successful sign-up
       },
       signUpFailure: (state, action) => {
         state.isLoading = false;

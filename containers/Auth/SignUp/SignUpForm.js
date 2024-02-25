@@ -3,14 +3,15 @@ import { useForm, Controller } from 'react-hook-form';
 import { MdLockOpen } from 'react-icons/md';
 import { Input, Switch, Button } from 'antd';
 import FormControl from 'components/UI/FormControl/FormControl';
-import { AuthContext } from 'context/AuthProvider';
 import { FieldWrapper, SwitchWrapper, Label } from '../Auth.style';
 import { useDispatch } from 'react-redux'; 
 import { signUpSuccess } from '../../../redux/features/authSlice';
+import Swal from "sweetalert2";
+import { useRouter } from "next/router";
 
 
 export default function SignUpForm() {
-  // const { signUp } = useContext(AuthContext);
+  const router = useRouter();
   const dispatch = useDispatch(); 
   const {
     control,
@@ -24,6 +25,13 @@ export default function SignUpForm() {
   const confirmPassword = watch('confirmPassword');
   const onSubmit = (data) => {
     dispatch(signUpSuccess(data));
+    Swal.fire({
+      icon: "success",
+      title: "Congrats",
+      text: 'Sign up successfully!',
+    }).then(() => {
+      router.push("/");
+    });
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
