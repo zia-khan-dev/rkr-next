@@ -32,7 +32,7 @@ export default class MyDocument extends Document {
       <Html>
         <Head>
           <meta name="theme-color" content="#008489" />
-          <meta name="description" content="React Hotel Listing Template" />
+          <meta name="description" content="RECIEVE NEAR BY" />
           <meta name="keywords" content="React, React js, Next, Next js" />
           <link
             rel="icon"

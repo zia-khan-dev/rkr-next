@@ -36,7 +36,7 @@ export default function HomePage({
   return (
     <>
       <Head>
-        <title>TripFinder. | React Hotel Listing Template</title>
+        <title>GoRACKER | RECIEVE NEAR BY</title>
       </Head>
       <SearchArea />
       <LocationGrid data={locationData} deviceType={deviceType} />

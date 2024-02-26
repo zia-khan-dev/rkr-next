@@ -30,8 +30,8 @@ export default function ForgetPassWord() {
         <Logo
           withLink
           linkTo="/"
-          src="/images/logo-alt.svg"
-          title="TripFinder."
+          src="/images/logo-color.svg"
+          title="GoRACKER"
         />
         <Title>Welcome Back</Title>
         <TitleInfo>Enter your email to recover your account</TitleInfo>

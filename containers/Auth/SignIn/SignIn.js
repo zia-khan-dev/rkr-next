@@ -21,8 +21,8 @@ const SignIn = () => {
         <Logo
           withLink
           linkTo="/"
-          src="/images/logo-alt.svg"
-          title="TripFinder."
+          src="/images/logo-color.svg"
+          title="GoRACKER"
         />
         <Title>Welcome Back</Title>
         <TitleInfo>Please log into your account</TitleInfo>

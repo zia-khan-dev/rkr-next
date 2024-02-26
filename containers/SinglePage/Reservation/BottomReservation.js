@@ -17,7 +17,7 @@ const BottomReservation = ({ title, price, rating, ratingCount }) => {
   return (
     <Fragment>
       <StickyBooking
-        logo="/images/logo-alt.svg"
+        logo="/images/logo-color.svg"
         title={title}
         price={price}
         rating={

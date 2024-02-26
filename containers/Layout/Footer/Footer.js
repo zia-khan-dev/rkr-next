@@ -11,8 +11,8 @@ const Footer = ({ path }) => {
         <Logo
           withLink
           linkTo="/"
-          src="/images/logo-alt.svg"
-          title="TripFinder."
+          src="/images/logo-color.svg"
+          title="GoRACKER"
         />
       }
       menu={<FooterMenu />}

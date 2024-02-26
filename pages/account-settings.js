@@ -7,7 +7,7 @@ export default function accountSettingsPage({ processedData }) {
   return (
     <>
       <Head>
-        <title>Account Settings | TripFinder.</title>
+        <title>Account Settings | GoRACKER</title>
       </Head>
       <AgentAccountSettingsPage processedData={processedData} />
     </>

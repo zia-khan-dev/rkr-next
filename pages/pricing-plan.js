@@ -6,7 +6,7 @@ export default function pricingPage() {
   return (
     <>
       <Head>
-        <title>Pricing plan | TripFinder.</title>
+        <title>Pricing plan | GoRACKER</title>
       </Head>
       <Pricing />
     </>

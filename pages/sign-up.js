@@ -6,7 +6,7 @@ export default function signUpPage() {
   return (
     <>
       <Head>
-        <title>Sign Up | TripFinder.</title>
+        <title>Sign Up | GoRACKER</title>
       </Head>
       <SignUp />
     </>

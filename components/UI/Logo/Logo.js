@@ -3,21 +3,25 @@ import PropTypes from 'prop-types';
 import Link from 'next/link';
 import LogoArea from './Logo.style';
 
-const LogoNext = ({ className, withLink, linkTo, title, src }) => {
+const LogoNext = ({ className, withLink, linkTo, title, src, imageOnly }) => {
   return (
     <LogoArea className={className}>
-      {withLink ? (
-        <Link href={linkTo}>
-          <a>
-            {src && <img src={src} alt="TripFinder." />}
-            {title && <h3>{title}</h3>}
-          </a>
-        </Link>
+      {imageOnly ? (
+        src && <img src={src} alt="Image" />
       ) : (
-        <Fragment>
-          {src && <img src={src} alt="TripFinder." />}
-          {title && <h3>{title}</h3>}
-        </Fragment>
+        withLink ? (
+          <Link href={linkTo}>
+            <a>
+              {src && <img src={src} alt="white" />}
+              {title && <h3>{title}</h3>}
+            </a>
+          </Link>
+        ) : (
+          <Fragment>
+            {src && <img src={src} alt="color" />}
+            {title && <h3>{title}</h3>}
+          </Fragment>
+        )
       )}
     </LogoArea>
   );
@@ -26,9 +30,10 @@ const LogoNext = ({ className, withLink, linkTo, title, src }) => {
 LogoNext.propTypes = {
   className: PropTypes.string,
   withLink: PropTypes.bool,
-  src: PropTypes.string,
-  title: PropTypes.string,
   linkTo: PropTypes.string,
+  title: PropTypes.string,
+  src: PropTypes.string,
+  imageOnly: PropTypes.bool, // Don't forget to declare all props
 };
 
 export default LogoNext;

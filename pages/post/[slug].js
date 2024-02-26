@@ -50,7 +50,7 @@ export default function SinglePostPage({ processedData, query }) {
   return (
     <>
       <Head>
-        <title>{pageTitle} | TripFinder.</title>
+        <title>{pageTitle} | GoRACKER</title>
       </Head>
       <SinglePageWrapper>
         <PostImage>
