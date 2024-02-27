@@ -7,10 +7,27 @@ import {
   AGENT_ACCOUNT_SETTINGS_PAGE,
   ADD_HOTEL_PAGE,
 } from 'settings/constant';
+import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
+import { signOut } from '../../../redux/features/authSlice';
 
 export default function ProfileMenu({ avatar }) {
-  const { logOut } = useContext(AuthContext);
+  // const { logOut } = useContext(AuthContext);
   const [state, setState] = useState(false);
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const {isLoggedIn} = useSelector((state) => state.auth);
+
+  const logOut = () =>{
+    const isLocalStorageAvailable =
+      typeof window !== "undefined" && window.localStorage;
+    if (isLocalStorageAvailable) {
+      localStorage.removeItem("persist:root");
+      localStorage.removeItem("user");
+    }
+    dispatch(signOut());
+    router.push('/');
+  }
 
   const handleDropdown = () => {
     setState(!state);

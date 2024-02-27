@@ -23,6 +23,12 @@ export const PRIVACY_PAGE = '/privacy';
 
 // Login / Registation Page
 export const LOGIN_PAGE = '/sign-in';
+export const USER_SIGN_UP = '/user/sign-up';
 export const REGISTRATION_PAGE = '/sign-up';
 export const CHANGE_PASSWORD_PAGE = '/change-password';
 export const FORGET_PASSWORD_PAGE = '/forget-password';
+
+
+// common api's endpoint
+
+export const COMMON_SIGN_UP = 'api/commons/sign-up';

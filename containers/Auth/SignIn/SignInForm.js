@@ -7,16 +7,32 @@ import FormControl from 'components/UI/FormControl/FormControl';
 import { AuthContext } from 'context/AuthProvider';
 import { FORGET_PASSWORD_PAGE } from 'settings/constant';
 import { FieldWrapper, SwitchWrapper, Label } from '../Auth.style';
+import { signInSuccess } from '../../../redux/features/authSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { useRouter } from "next/router";
+import Swal from "sweetalert2";
+
+
+
 
 export default function SignInForm() {
-  const { signIn } = useContext(AuthContext);
+  const router = useRouter();
+  const dispatch = useDispatch();
+  // const { signIn } = useContext(AuthContext);
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    signIn(data);
+    dispatch(signInSuccess({islogged: true}));
+    Swal.fire({
+      icon: "success",
+      title: "Congrats",
+      text: 'Sign in successfully!',
+    }).then(() => {
+      router.push("/");
+    });
   };
 
   return (

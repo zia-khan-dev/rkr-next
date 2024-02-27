@@ -4,6 +4,7 @@ import { Layout as LayoutWrapper } from 'antd';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import LayoutProvider from 'context/LayoutProvider';
+
 import {
   LISTING_POSTS_PAGE,
   LOGIN_PAGE,
@@ -18,6 +19,7 @@ import {
   FORGET_PASSWORD_PAGE,
   AGENT_IMAGE_EDIT_PAGE,
   AGENT_PASSWORD_CHANGE_PAGE,
+  USER_SIGN_UP
 } from 'settings/constant';
 
 const { Content } = LayoutWrapper;
@@ -25,9 +27,10 @@ const { Content } = LayoutWrapper;
 const Layout = ({ children, router }) => {
   return (
     <LayoutWrapper>
-      <LayoutProvider>
+      {/* <LayoutProvider> */}
         {router.pathname === LOGIN_PAGE ||
         router.pathname === CHANGE_PASSWORD_PAGE ||
+        router.pathname === USER_SIGN_UP ||
         router.pathname === FORGET_PASSWORD_PAGE ||
         router.pathname === REGISTRATION_PAGE ? (
           <Content>{children}</Content>
@@ -53,7 +56,7 @@ const Layout = ({ children, router }) => {
             )}
           </>
         )}
-      </LayoutProvider>
+      {/* </LayoutProvider> */}
     </LayoutWrapper>
   );
 };

@@ -7,20 +7,25 @@ import { mapDataHelper } from 'components/Map/mapDataHelper';
 import { NavbarSearchWrapper } from './Header.style';
 import { SearchContext } from 'context/SearchProvider';
 import { setStateToUrl } from 'library/helpers/url-handler';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateSearch } from '../../../redux/features/searchSlice';
 
 const NavbarSearch = () => {
-  const { state, dispatch } = useContext(SearchContext);
+  // const { state, dispatch } = useContext(SearchContext);
+
+
+  const dispatch = useDispatch();
+  const searchState = useSelector((state) => state.search); // Assuming 'search' is the key for your search slice in the global state
   const initialState = {
-    amenities: state.amenities || [],
-    property: state.property || [],
-    setStartDate: state.setStartDate || null,
-    setEndDate: state.setEndDate || null,
-    minPrice: parseInt(state.minPrice) || 0,
-    maxPrice: parseInt(state.maxPrice) || 100,
-    location_lat: state.location_lat || null,
-    location_lng: state.location_lng || null,
-    room: parseInt(state.room) || 0,
-    guest: parseInt(state.guest) || 0,
+    amenities: searchState?.property || [],
+    setStartDate: searchState?.setStartDate || null,
+    setEndDate: searchState?.setEndDate || null,
+    minPrice: parseInt(searchState?.minPrice) || 0,
+    maxPrice: parseInt(searchState?.maxPrice) || 100,
+    location_lat: searchState?.location_lat || null,
+    location_lng: searchState?.location_lng || null,
+    room: parseInt(searchState?.room) || 0,
+    guest: parseInt(searchState?.guest) || 0,
   };
 
   const handleUpdate = (value) => {
@@ -38,20 +43,17 @@ const NavbarSearch = () => {
       );
     }
 
-    const searchLocation = tempLocation ? tempLocation[0] : {};
+    const searchLocation = tempLocation.length ? tempLocation[0] : {};
     if (!isEmpty(searchLocation)) {
       const query = {
-        location_lat: parseFloat(searchLocation.location_lat),
-        location_lng: parseFloat(searchLocation.location_lng),
+        location_lat: parseFloat(searchLocation?.location_lat),
+        location_lng: parseFloat(searchLocation?.location_lng),
       };
+      dispatch(updateSearch({
+        ...initialState,
+        ...query,
+      }));
       const params = setStateToUrl(query);
-      dispatch({
-        type: 'UPDATE',
-        payload: {
-          ...initialState,
-          ...query,
-        },
-      });
       Router.push({
         pathname: '/listing',
         query: params,
