@@ -9,7 +9,7 @@ if (process.env.CHECK_ENV === "production") {
   const config = dbConfig[env];
   sequelize = new Sequelize(config.database, config.username, config.password, {
     host: config.host,
-    dialect: "postgres",
+    dialect: config.dialect,
     dialectOptions: {
       ssl: {
         require: true, // Use SSL
@@ -23,7 +23,7 @@ if (process.env.CHECK_ENV === "production") {
   console.log("env", config);
   sequelize = new Sequelize(config.database, config.username, config.password, {
     host: config.host,
-    dialect: "postgres",
+    dialect: config.dialect
   });
 }
 sequelize

@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "migrate": "sequelize db:migrate",
+    "undo": "sequelize db:migrate:undo",
+    "undo-all": "sequelize db:migrate:all",
+    "seed": "sequelize db:seed",
+    "seed-all": "sequelize db:seed:all"
   },
   "dependencies": {
     "@glidejs/glide": "^3.6.0",
@@ -15,6 +20,7 @@
     "@styled-system/theme-get": "^5.1.2",
     "antd": "^5.5.0",
     "axios": "^1.6.7",
+    "bcrypt": "^5.1.1",
     "cloudinary": "^2.0.1",
     "crypto-js": "^4.2.0",
     "dayjs": "^1.11.6",
@@ -28,6 +34,7 @@
     "moment": "^2.29.4",
     "next": "^12.3.4",
     "next-cookies": "^2.0.3",
+    "nprogress": "^0.2.0",
     "pg": "^8.11.3",
     "postcss-preset-env": "^7.8.3",
     "react": "^18.2.0",
@@ -47,6 +54,7 @@
     "react-toastify": "^10.0.4",
     "react-waypoint": "^10.3.0",
     "redux-persist": "^6.0.0",
+    "sequelize": "^6.37.1",
     "sharp": "^0.31.2",
     "styled-components": "^5.3.6",
     "styled-system": "^5.1.5",

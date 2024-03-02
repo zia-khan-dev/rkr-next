@@ -47,7 +47,10 @@ const LogoIcon = () => (
 
 const Header = ({ router }) => {
   // const { loggedIn } = useContext(AuthContext);
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const {isLoggedIn, user} = useSelector((state) => state.auth);
+  console.log("user", user);
+
+  console.log("useSelector", isLoggedIn);
   
   const handleStateChange = (status) => {
     if (status.status === Sticky.STATUS_FIXED) {
@@ -137,7 +140,7 @@ const Header = ({ router }) => {
                   <Logo src={avatarImg} />
                 </AvatarImage>
                 <AvatarInfo>
-                  <Text as="h3" content="Nova Scotia" />
+                  <Text as="h3" content={user?.firstName + " " + user?.lastName } />
                   <Link href={AGENT_PROFILE_PAGE}>
                     <a>View Profile</a>
                   </Link>

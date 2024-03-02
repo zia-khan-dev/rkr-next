@@ -13,8 +13,12 @@ import Wrapper, {
   FormWrapper,
   BannerWrapper,
 } from '../Auth.style';
+import { useSelector } from 'react-redux';
 
 const SignUp = () => {
+  const user = useSelector((state) => state.auth.user);
+  console.log("user", user);
+
   return (
     <Wrapper>
       <FormWrapper>
@@ -28,7 +32,7 @@ const SignUp = () => {
         <TitleInfo>Please Register for your account</TitleInfo>
         <SignUpForm />
         <Divider>Or Register Up With </Divider>
-        <SocialLogin />
+        {/* <SocialLogin /> */}
         <Text>
           Already Have an Account! &nbsp;
           <Link href={LOGIN_PAGE}>

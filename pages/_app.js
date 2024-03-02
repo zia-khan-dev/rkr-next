@@ -19,7 +19,7 @@ function App({ Component, router, pageProps }) {
 
   return (
     <Provider store={store}>
-      <AuthProvider>
+      {/* <AuthProvider> */}
         <SearchProvider query={query}>
           <ThemeProvider theme={theme}>
             <Layout>
@@ -28,7 +28,7 @@ function App({ Component, router, pageProps }) {
             </Layout>
           </ThemeProvider>
         </SearchProvider>
-      </AuthProvider>
+      {/* </AuthProvider> */}
       <ToastContainer />
     </Provider>
   );

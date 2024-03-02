@@ -1,19 +1,19 @@
+'use client'
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { MdLockOpen } from 'react-icons/md';
 import { Input, Switch, Button } from 'antd';
 import FormControl from 'components/UI/FormControl/FormControl';
-import { useDispatch } from 'react-redux'; 
+import { useDispatch, useSelector } from 'react-redux'; 
 import { signUpSuccess } from '../../../redux/features/authSlice';
-import Swal from "sweetalert2";
-import { useRouter } from "next/router";
-import { signUpFormElements } from '../../../database/helper/form';
+import { signUpFormElements } from '../../../components/form/form';
 import renderInput from '../../../components/form/RenderInput';
+import useCrud from '../../../library/hooks/useCrud';
+import { COMMON_SIGN_UP_END_POINT } from '../../../settings/constant';
 
 // Assuming signUpFormElements is imported here
 
 export default function SignUpForm() {
-  const router = useRouter();
   const dispatch = useDispatch();
   const { control, watch, formState: { errors }, handleSubmit } = useForm({
     mode: 'onChange',
@@ -21,16 +21,31 @@ export default function SignUpForm() {
 
   const password = watch('password');
   const confirmPassword = watch('confirmPassword');
-  const onSubmit = (data) => {
-    dispatch(signUpSuccess(data));
-    Swal.fire({
-      icon: "success",
-      title: "Congrats",
-      text: 'Sign up successfully!',
-    }).then(() => {
-      router.push("/");
-    });
+
+  const { callApi, data } = useCrud(
+    process.env.NEXT_PUBLIC_SERVER_API + COMMON_SIGN_UP_END_POINT,
+    'POST',
+    '/',
+    'user added',
+
+  );
+const onSubmit = (formData) => {
+
+  const onSuccess = (data) => {
+    console.log("success data", data);
+    const { user, access_token } = data?.data;
+    console.log("user", user, access_token);
+    dispatch(signUpSuccess({userId: user?.id, user, token: access_token, role: user?.user_type }));
   };
+
+  const onError = (error) => {
+    // Handle error case
+    console.error("Sign up error", error);
+  };
+
+  callApi(formData, onSuccess, onError);
+};
+
 
 
 

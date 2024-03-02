@@ -52,11 +52,11 @@ const authSlice = createSlice({
     },
     signUpSuccess: (state, action) => {
       state.isLoading = false;
-      // state.userId = action.payload.user.id;
-      // state.user = action.payload.user;
-      // state.token = action.payload.token;
-      // state.role = action.payload.user.roles;
-      // state.error = null;
+      state.userId = action.payload.userId;
+      state.user = action.payload.user;
+      state.token = action.payload.token;
+      state.role = action.payload.role;
+      state.error = null;
       state.isLoggedIn = true;
     },
     signUpFailure: (state, action) => {

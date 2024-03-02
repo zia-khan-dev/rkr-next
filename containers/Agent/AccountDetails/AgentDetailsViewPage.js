@@ -26,13 +26,15 @@ import AgentDetailsPage, {
   SocialAccount,
   NavigationArea,
 } from './AgentDetails.style';
+import { useSelector } from 'react-redux';
 
 const AgentFavItemLists = dynamic(() => import('./AgentFavItemLists'));
 const AgentContact = dynamic(() => import('./AgentContact'));
 const AgentItemLists = dynamic(() => import('./AgentItemLists'));
 
 const ProfileNavigation = (props) => {
-  const { loggedIn } = useContext(AuthContext);
+  // const { loggedIn } = useContext(AuthContext);
+  const {isLoggedin} = useSelector((state) => state.auth)
   const [component, setComponent] = useState('allListing');
   const { className } = props;
 
@@ -66,7 +68,7 @@ const ProfileNavigation = (props) => {
               </a>
             </li>
           </ul>
-          {loggedIn && (
+          {isLoggedin && (
             <Link href={ADD_HOTEL_PAGE}>
               <a className="add_card">
                 <IoIosAdd /> Add Hotel

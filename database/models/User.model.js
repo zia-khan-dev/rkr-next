@@ -20,16 +20,19 @@ const User = sequelize.define("users", {
     type: DataTypes.STRING
   },
   status: {
-    type: DataTypes.BOOLEAN
+    type: DataTypes.STRING,
+    defaultValue:'active'
   },
   email: {
     type: DataTypes.STRING
   },
   phoneNumber: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
+    allowNull: true,
   },
-  sddress: {
-    type: DataTypes.STRING
+  address: {
+    type: DataTypes.STRING,
+    allowNull: true,
   },
   userType: {
     type: DataTypes.STRING

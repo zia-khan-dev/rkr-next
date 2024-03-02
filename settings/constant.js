@@ -31,4 +31,4 @@ export const FORGET_PASSWORD_PAGE = '/forget-password';
 
 // common api's endpoint
 
-export const COMMON_SIGN_UP = 'api/commons/sign-up';
+export const COMMON_SIGN_UP_END_POINT = '/api/common/sign-up';

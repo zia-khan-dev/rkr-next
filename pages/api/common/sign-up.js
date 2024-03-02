@@ -73,7 +73,7 @@ export default async function handler(req, res) {
       );
 
       res.status(HttpStatus.OK.code).send(
-        new Response(false, `USER ${HttpStatus.OK.message}`, {
+        new Response(true, `${HttpStatus.CREATED.message}`, {
           user: user,
           access_token: token,
         })

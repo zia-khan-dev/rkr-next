@@ -28,7 +28,7 @@ const SignIn = () => {
         <TitleInfo>Please log into your account</TitleInfo>
         <SignInForm />
         <Divider>Or log in with </Divider>
-        <SocialLogin />
+        {/* <SocialLogin /> */}
         <Text>
           Don't Have an Account?&nbsp;
           <Link href={REGISTRATION_PAGE}>
