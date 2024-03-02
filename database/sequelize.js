@@ -20,7 +20,6 @@ if (process.env.CHECK_ENV === "production") {
   const env = process.env.CHECK_ENV || "development";
   const config = dbConfig[env];
 
-  console.log("env", config);
   sequelize = new Sequelize(config.database, config.username, config.password, {
     host: config.host,
     dialect: config.dialect

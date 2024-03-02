@@ -48,10 +48,6 @@ const LogoIcon = () => (
 const Header = ({ router }) => {
   // const { loggedIn } = useContext(AuthContext);
   const {isLoggedIn, user} = useSelector((state) => state.auth);
-  console.log("user", user);
-
-  console.log("useSelector", isLoggedIn);
-  
   const handleStateChange = (status) => {
     if (status.status === Sticky.STATUS_FIXED) {
       dispatch(showTopSearchBar());

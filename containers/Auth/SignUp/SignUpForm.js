@@ -32,9 +32,7 @@ export default function SignUpForm() {
 const onSubmit = (formData) => {
 
   const onSuccess = (data) => {
-    console.log("success data", data);
     const { user, access_token } = data?.data;
-    console.log("user", user, access_token);
     dispatch(signUpSuccess({userId: user?.id, user, token: access_token, role: user?.user_type }));
   };
 
