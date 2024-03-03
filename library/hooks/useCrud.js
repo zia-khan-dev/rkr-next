@@ -74,7 +74,7 @@ const useCrud = (
       // Show Swal for unexpected errors
       Swal.fire({
         icon: "error",
-        title: "Oops...",
+        title: "Error",
         text: errorText,
       });
   

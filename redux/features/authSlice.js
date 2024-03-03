@@ -19,10 +19,10 @@ const authSlice = createSlice({
     signInSuccess: (state, action) => {
       state.isLoading = false;
       state.isLoggedIn = true;
-      // state.userId = action.payload.user.id;
-      // state.user = action.payload.user;
-      // state.token = action.payload.token;
-      // state.role = action.payload.user.roles; // Assuming roles is an array
+      state.userId = action.payload.userId;
+      state.user = action.payload.user;
+      state.token = action.payload.token;
+      state.role = action.payload.role; // Assuming roles is an array
       state.error = null;
     },
     signInFailure: (state, action) => {

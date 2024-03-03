@@ -1,4 +1,5 @@
-import React from 'react';
+'use client'
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import NavbarWrapper, {
   Container,
@@ -8,6 +9,7 @@ import NavbarWrapper, {
   AuthWrapper,
   MenuWrapper,
 } from './Navbar.style';
+import Loader from '../Loader/Loader';
 
 const Navbar = ({
   className,
@@ -22,12 +24,27 @@ const Navbar = ({
   location,
   searchVisibility,
 }) => {
+
+  const [isLoading, setIsLoading] = useState(true); // Add a loading state
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 500); // Adjust time as necessary
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const addAllClasses = ['navbar'];
   if (className) {
     addAllClasses.push(className);
   }
   if (headerType) {
     addAllClasses.push(`is_${headerType}`);
+  }
+
+  if (isLoading) {
+    return <Loader fill="#008489" />; 
   }
 
   return (
