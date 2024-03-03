@@ -38,9 +38,13 @@ export default function SignUpForm() {
       dispatch(
         signUpSuccess({
           userId: user?.id,
-          user,
+          user : {
+            id: user?.id,
+            firstName: user?.firstName,
+            lastName: user?.lastName,
+          },
+          role: user?.userType,
           token: access_token,
-          role: user?.user_type,
         })
       );
     };

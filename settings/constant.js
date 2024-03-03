@@ -20,6 +20,7 @@ export const ADD_HOTEL_PAGE = '/add-hotel';
 // Other Pages
 export const PRICING_PLAN_PAGE = '/pricing-plan';
 export const PRIVACY_PAGE = '/privacy';
+export const UNAUTHORIZED = '/unauthorized';
 
 // Login / Registation Page
 export const LOGIN_PAGE = '/sign-in';

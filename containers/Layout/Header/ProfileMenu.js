@@ -16,7 +16,9 @@ export default function ProfileMenu({ avatar }) {
   const [state, setState] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch();
-  const {isLoggedIn} = useSelector((state) => state.auth);
+  const {role, user} = useSelector((state) => state.auth);
+  console.log("role", user, role);
+  
 
   const logOut = () =>{
     const isLocalStorageAvailable =

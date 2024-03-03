@@ -34,12 +34,18 @@ export default function SignInForm() {
   const onSubmit = (formData) => {
     const onSuccess = (data) => {
       const { user, access_token } = data?.data;
+
       dispatch(
         signInSuccess({
           userId: user?.id,
-          user,
+          user : {
+            id: user?.id,
+            firstName: user?.firstName,
+            lastName: user?.lastName,
+          },
+          role: user?.userType,
           token: access_token,
-          role: user?.user_type,
+
         })
       );
     };
