@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import Router, { withRouter } from 'next/router';
 import isEmpty from 'lodash/isEmpty';
 import { FaMapMarkerAlt, FaRegCalendar, FaUserFriends } from 'react-icons/fa';
@@ -15,7 +15,8 @@ import {
   ItemWrapper,
 } from './Search.style';
 import { LISTING_POSTS_PAGE } from '../../../settings/constant';
-import { SearchContext } from '../../../context/SearchProvider';
+import { updateQuery } from '../../../redux/features/searchSlice';
+import { useDispatch } from 'react-redux';
 
 const calendarItem = {
   separator: '-',
@@ -24,7 +25,9 @@ const calendarItem = {
 };
 
 const SearchForm = () => {
-  const { state, dispatch } = useContext(SearchContext);
+  // const { state, dispatch } = useContext(SearchContext);
+  const dispatch = useDispatch();
+
   const [searchDate, setSearchDate] = useState({
     setStartDate: null,
     setEndDate: null,
@@ -108,18 +111,15 @@ const SearchForm = () => {
       }
     }
 
-    dispatch({
-      type: 'UPDATE',
-      payload: {
-        ...state,
-        setStartDate: searchDate.setStartDate,
-        setEndDate: searchDate.setEndDate,
-        room: roomGuest.room,
-        guest: roomGuest.guest,
-        location_lat,
-        location_lng,
-      },
-    });
+    dispatch(updateQuery({
+      setStartDate: searchDate.setStartDate,
+      setEndDate: searchDate.setEndDate,
+      room: roomGuest.room,
+      guest: roomGuest.guest,
+      location_lat,
+      location_lng,
+    }));
+
 
     Router.push(
       {

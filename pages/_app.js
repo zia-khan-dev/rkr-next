@@ -20,14 +20,14 @@ function App({ Component, router, pageProps }) {
   return (
     <Provider store={store}>
       {/* <AuthProvider> */}
-        <SearchProvider query={query}>
+        {/* <SearchProvider query={query}> */}
           <ThemeProvider theme={theme}>
             <Layout>
               <GlobalStyles />
               <Component {...pageProps} />
             </Layout>
           </ThemeProvider>
-        </SearchProvider>
+        {/* </SearchProvider> */}
       {/* </AuthProvider> */}
       <ToastContainer />
     </Provider>

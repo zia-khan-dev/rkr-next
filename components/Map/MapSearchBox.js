@@ -26,6 +26,8 @@ const MapWithSearchBox = (props) => {
     ],
     places: [],
   });
+  console.log("locationInput", locationInput, locationDetails );
+
   const onLoad = (ref) => setSearchBox(ref);
 
   const onPlacesChanged = () => {
@@ -84,7 +86,7 @@ const MapWithSearchBox = (props) => {
     });
 
     geocoder.geocode({ latLng: latlng }, function (results, status) {
-      console.log(results, 'results');
+      console.log(results, 'geocode results');
       if (results[0] && results[0].formatted_address) {
         setLocationInput({
           searchedLocation: results[0] && results[0].formatted_address,

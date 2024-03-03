@@ -22,8 +22,8 @@ const HotelAmenities = ({ setStep }) => {
   const onSubmit = (data) => {
     const formData = { ...state.data, ...data };
     console.log('add hotel data: ', formData);
-    alert(JSON.stringify(formData, null, 2));
-    actions.addListingResetAction();
+    // alert(JSON.stringify(formData, null, 2));
+    // actions.addListingResetAction();
   };
 
   return (

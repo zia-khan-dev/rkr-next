@@ -8,7 +8,6 @@ import { Checkbox } from 'antd';
 import SectionGrid from 'components/SectionGrid/SectionGrid';
 import { PostPlaceholder } from 'components/UI/ContentLoader/ContentLoader';
 import ListingMap from 'containers/Listing/ListingMap';
-import { SearchContext } from 'context/SearchProvider';
 import {
   getAPIData,
   paginator,
@@ -27,14 +26,18 @@ import ListingWrapper, {
   PostsWrapper,
   ShowMapCheckbox,
 } from 'containers/Listing/Listing.style';
+import { useSelector } from 'react-redux';
 
 const FilterDrawer = dynamic(() =>
   import('containers/Listing/Search/MobileSearchView')
 );
 
 export default function ListingPage({ processedData, deviceType }) {
-  const { state, dispatch } = useContext(SearchContext);
-  const statekey = searchStateKeyCheck(state);
+
+  const { query } = useSelector(state => state.search); // Accessing query state from Redux
+  console.log("query", query);
+
+  const statekey = searchStateKeyCheck(query);
   const [posts, setPosts] = useState(
     processedData.slice(0, LISTING_PAGE_POST_LIMIT) || []
   );
@@ -81,13 +84,13 @@ export default function ListingPage({ processedData, deviceType }) {
 
       <Sticky top={82} innerZ={999} activeClass="isHeaderSticky">
         <Toolbar
-          left={
-            deviceType === 'desktop' ? <CategorySearch /> : <FilterDrawer />
-          }
+          // left={
+          //   deviceType === 'desktop' ? <CategorySearch /> : <FilterDrawer />
+          // }
           right={
             <ShowMapCheckbox>
               <Checkbox defaultChecked={false} onChange={handleMapToggle}>
-                Show map
+                Show Map View
               </Checkbox>
             </ShowMapCheckbox>
           }
@@ -105,9 +108,10 @@ export default function ListingPage({ processedData, deviceType }) {
           loading={loading}
           handleLoadMore={handleLoadMore}
           placeholder={<PostPlaceholder />}
+          
         />
-      </PostsWrapper>
       {showMap && <ListingMap loading={loading} mapData={posts} />}
+      </PostsWrapper>
     </ListingWrapper>
   );
 }

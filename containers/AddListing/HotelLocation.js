@@ -100,7 +100,7 @@ const HotelLocation = ({ setStep }) => {
           />
         </FormControl>
         <FormControl
-          error={errors.locationData && <span>This field is required!</span>}
+          error={errors.locationData && <span>This location Map is required!</span>}
         >
           <MapWithSearchBox
             name="locationData"

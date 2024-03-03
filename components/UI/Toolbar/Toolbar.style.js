@@ -21,4 +21,8 @@ export const LeftSide = styled.div``;
 
 export const RightSide = styled.div``;
 
+
+export const CenterSide = styled.div``;
+
+
 export default Wrapper;

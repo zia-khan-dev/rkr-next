@@ -1,6 +1,6 @@
-const data =  [
+export const demoData =  [
         {
-            "id": 63288,
+            "id": 1,
             "agentId": 38076,
             "title": "Handmade Wooden Mouse",
             "slug": "amet-rem-tempora",

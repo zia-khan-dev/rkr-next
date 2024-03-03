@@ -18,6 +18,7 @@ import CategroySearchWrapper, {
   ItemWrapper,
   ActionWrapper,
 } from './CategorySearch.style';
+import { useSelector, useDispatch } from 'react-redux';
 
 const history = process.browser ? createBrowserHistory() : false;
 const location = process.browser && window.location;
@@ -54,18 +55,21 @@ function serchReducer(state, action) {
 }
 
 const CategorySearchNext = (props) => {
-  const { state, dispatch } = useContext(SearchContext);
+  // const { state, dispatch } = useContext(SearchContext);
+  const dispatch = useDispatch();
+  const { query } = useSelector(state => state.search); // Accessing query state from Redux
+
   const initialState = {
-    amenities: state.amenities || [],
-    property: state.property || [],
-    setStartDate: state.setStartDate || null,
-    setEndDate: state.setEndDate || null,
-    minPrice: parseInt(state.minPrice) || 0,
-    maxPrice: parseInt(state.maxPrice) || 100,
-    location_lat: state.location_lat || null,
-    location_lng: state.location_lng || null,
-    room: parseInt(state.room) || 0,
-    guest: parseInt(state.guest) || 0,
+    amenities: query.amenities || [],
+    property: query.property || [],
+    setStartDate: query.setStartDate || null,
+    setEndDate: query.setEndDate || null,
+    minPrice: parseInt(query.minPrice) || 0,
+    maxPrice: parseInt(query.maxPrice) || 100,
+    location_lat: query.location_lat || null,
+    location_lng: query.location_lng || null,
+    room: parseInt(query.room) || 0,
+    guest: parseInt(query.guest) || 0,
   };
 
   // current component state with dispatching to reducer
@@ -132,11 +136,8 @@ const CategorySearchNext = (props) => {
     }
     const params = setStateToUrl(query);
     dispatch({
-      type: 'UPDATE',
-      payload: {
         ...current,
         ...query,
-      },
     });
     history.push({
       ...location,

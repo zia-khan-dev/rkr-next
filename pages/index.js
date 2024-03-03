@@ -72,7 +72,7 @@ export default function HomePage({
         <title>GoRACKER | RECIEVE NEAR BY</title>
       </Head>
       <SearchArea />
-      <LocationGrid data={locationData} deviceType={deviceType} />
+      {/* <LocationGrid data={locationData} deviceType={deviceType} /> */}
       <Container fluid={true}>
         <SectionTitle
           title={<Heading content="Travelers’ Choice: Top hotels" />}
@@ -82,13 +82,13 @@ export default function HomePage({
             </Link>
           }
         />
-        {/* <SectionGrid
+         <SectionGrid
           link={SINGLE_POST_PAGE}
           columnWidth={HOME_PAGE_SECTIONS_COLUMNS_RESPONSIVE_WIDTH}
           data={topHotelData.slice(0, old_limit)}
           old_limit={old_limit}
           deviceType={deviceType}
-        /> */}
+        /> 
         <SectionTitle
           title={<Heading content="Best Rated: Luxary hotels" />}
           link={
@@ -126,8 +126,7 @@ export async function getServerSideProps(context) {
     },
   ];
   const deviceType = getDeviceType(req);
-  // const pageData = await getAPIData(apiUrl);
-  const pageData = null;
+  const pageData = await getAPIData(apiUrl);
   let locationData = [],
     topHotelData = [],
     luxaryHotelData = [];

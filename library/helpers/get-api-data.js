@@ -28,6 +28,7 @@ export const searchedData = (processedData) => {
 };
 
 export const searchStateKeyCheck = (state) => {
+  console.log('state key check', state);
   for (var key in state) {
     if (
       state[key] !== null &&

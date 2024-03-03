@@ -31,6 +31,7 @@ const hotelPhotos = [
 
 const HotelPhotos = ({ setStep }) => {
   const { actions, state } = useStateMachine({ addListingAction });
+  console.log("actions", actions, "state", state);
   const {
     register,
     formState: { errors },
