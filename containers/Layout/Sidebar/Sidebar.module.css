@@ -1,0 +1,43 @@
+.dashboard__sidebar {
+  background-color: #008489;
+}
+
+.dashboard__user_section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 16px 0;
+}
+
+.dashboard__user_image {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+}
+
+.dashboard__user_name {
+  text-align: center;
+  margin-bottom: 16px;
+  color: white;
+}
+
+.dashboard__menu {
+  background-color: #008489;
+}
+
+.dashboard__menu_item {
+  color: white !important;
+}
+
+.dashboard__menu_item.ant-menu-item-selected {
+  background-color: yellow;
+}
+
+.dashboard__sub_menu {
+  background-color: #008489;
+}
+
+.dashboard__sub_menu .ant-menu-item-selected {
+  background-color: yellow;
+}

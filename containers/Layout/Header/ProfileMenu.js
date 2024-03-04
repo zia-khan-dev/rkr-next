@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { signOut } from '../../../redux/features/authSlice';
 
-export default function ProfileMenu({ avatar }) {
+export default function ProfileMenu({ avatar, route }) {
   // const { logOut } = useContext(AuthContext);
   const [state, setState] = useState(false);
   const router = useRouter();
@@ -39,6 +39,16 @@ export default function ProfileMenu({ avatar }) {
     setState(false);
   };
 
+  const DASHBOARD_ROUTE =  "/"+ role + "/dashboard" ;
+ 
+
+
+  console.log("route", DASHBOARD_ROUTE, router.pathname);
+  // const goToDashboard = (role) => {
+  //   if (router.pathname !== route) {
+  //     router.push(route);
+  //   }
+  // }
   const dropdownRef = useRef(null);
   useOnClickOutside(dropdownRef, () => setState(false));
 
@@ -53,13 +63,16 @@ export default function ProfileMenu({ avatar }) {
           <ActiveLink href={AGENT_PROFILE_PAGE}>View Profile</ActiveLink>
         </li>
         <li onClick={closeDropdown}>
-          <ActiveLink href={ADD_HOTEL_PAGE}>Add Hotel</ActiveLink>
+          <ActiveLink href={DASHBOARD_ROUTE }>View Dashboard</ActiveLink>
         </li>
-        <li onClick={closeDropdown}>
+        {/* <li onClick={closeDropdown}>
+          <ActiveLink href={ADD_HOTEL_PAGE}>Add Hotel</ActiveLink>
+        </li> */}
+        {/* <li onClick={closeDropdown}>
           <ActiveLink href={AGENT_ACCOUNT_SETTINGS_PAGE}>
             Account Settings
           </ActiveLink>
-        </li>
+        </li> */}
         <li>
           <button onClick={logOut}>Log Out</button>
         </li>

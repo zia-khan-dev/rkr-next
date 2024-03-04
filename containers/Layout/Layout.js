@@ -5,7 +5,8 @@ import WebsiteLayout from './WebsiteLayout';
 import { useSelector } from 'react-redux';
 
 const Layout = ({ children, router }) => {
-  const isDashboardRoute = router.pathname.startsWith('/admin/dashboard') || router.pathname.startsWith('/user/dashboard') || router.pathname.startsWith('/host/dashboard');
+  const isDashboardRoute = router.pathname.startsWith('/dashboard/') || router.pathname.startsWith('/dashboard');
+  // console.log("isDashboardRoute", isDashboardRoute, router.pathname);
   
   const {role} = useSelector((state) => state.auth);
   const restrictedUrls = [
