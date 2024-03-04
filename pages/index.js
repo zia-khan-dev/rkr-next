@@ -18,7 +18,9 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { fetchApiData } from "../redux/features/apiSlice";
 import DataTable from 'react-data-table-component';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { filterByDistance } from "../library/helpers/get-api-data";
 
 export default function HomePage({
   deviceType,
@@ -40,6 +42,12 @@ export default function HomePage({
   }
   const url = "https://jsonplaceholder.typicode.com/posts";
 
+  const [location, setLocation] = useState({
+    latitude: 0,
+    longitude: 0,
+  });
+
+  console.log("location", location);
   // const { data, loading, error, page, limit } = useSelector(
   //   (state) => state.api
   // );
@@ -66,6 +74,71 @@ export default function HomePage({
   // ]  
 
   
+  useEffect(() => {
+    // Check if geolocation is supported by the browser
+    if ('geolocation' in navigator) {
+      // Get the user's current position
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+
+          setLocation({latitude, longitude});
+          // Now you have the latitude and longitude, you can send it to your server
+          // for further processing or display it on your website
+          console.log('Latitude:', latitude);
+          console.log('Longitude:', longitude);
+
+          // Optionally, you can use reverse geocoding to get the address
+          // You can use the code from the previous example to implement reverse geocoding
+        },
+        error => {
+          console.error('Error getting user location:', error.message);
+          // Handle errors here
+        }
+      );
+    } else {
+      console.error('Geolocation is not supported by this browser.');
+      // Handle unsupported browser
+    }
+  }, []); 
+
+  const getGeocodingData = async (latitude, longitude) => {
+    try {
+      const apiKey = 'AIzaSyDCn-YvmmGkH-bjr6-FhPQ1aPq83WDjEmY';
+      const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}`;
+      
+      const response = await axios.get(url);
+  
+      if (response.status === 200) {
+        const data = response.data;
+        if (data.results.length > 0) {
+          const address = data.results[0];
+          return address;
+        } else {
+          throw new Error('No results found');
+        }
+      } else {
+        throw new Error('Failed to fetch geocoding data');
+      }
+    } catch (error) {
+      console.error('Error fetching geocoding data:', error.message);
+      return null;
+    }
+  };
+
+  getGeocodingData("40.706877", "-74.011265")
+  .then(address => {
+    console.log('Address:', address);
+  })
+  .catch(error => {
+    console.error('Error:', error.message);
+  });
+
+  // getting locations near me 
+
+  const filteredData = filterByDistance(luxaryHotelData, "38.907", "-77.037", 50); // Filter within 50 km
+  console.log("filteredData in in", filteredData);
   return (
     <>
       <Head>
@@ -75,7 +148,7 @@ export default function HomePage({
       {/* <LocationGrid data={locationData} deviceType={deviceType} /> */}
       <Container fluid={true}>
         <SectionTitle
-          title={<Heading content="Travelers’ Choice: Top hotels" />}
+          title={<Heading content="Locations Near me" />}
           link={
             <Link href={LISTING_POSTS_PAGE}>
               <a>Show all</a>
@@ -85,7 +158,7 @@ export default function HomePage({
          <SectionGrid
           link={SINGLE_POST_PAGE}
           columnWidth={HOME_PAGE_SECTIONS_COLUMNS_RESPONSIVE_WIDTH}
-          data={topHotelData.slice(0, old_limit)}
+          data={filteredData.slice(0, old_limit)}
           old_limit={old_limit}
           deviceType={deviceType}
         /> 
