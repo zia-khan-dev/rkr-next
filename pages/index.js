@@ -105,7 +105,7 @@ export default function HomePage({
 
   const getGeocodingData = async (latitude, longitude) => {
     try {
-      const apiKey = 'AIzaSyDCn-YvmmGkH-bjr6-FhPQ1aPq83WDjEmY';
+      const apiKey = 'my-api-key';
       const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}`;
       
       const response = await axios.get(url);
