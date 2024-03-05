@@ -16,18 +16,14 @@ import HeaderWrapper, {
   AvatarImage,
   AvatarInfo,
   LogoArea,
-} from "./Header.style";
+} from "../Header/Header.style";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  showTopSearchBar,
-  hideTopSearchBar,
-} from "../../../redux/features/layoutSlice";
 
-const AuthMenu = dynamic(() => import("./AuthMenu"));
+const AuthMenu = dynamic(() => import("../Header/AuthMenu"));
 const MainMenu = dynamic(() => import("./MainMenu"));
-const MobileMenu = dynamic(() => import("./MobileMenu"));
-const ProfileMenu = dynamic(() => import("./ProfileMenu"));
-const NavbarSearch = dynamic(() => import("./NavbarSearch"));
+const MobileMenu = dynamic(() => import("../Header/MobileMenu"));
+const ProfileMenu = dynamic(() => import("../Header/ProfileMenu"));
+const NavbarSearch = dynamic(() => import("../Header/NavbarSearch"));
 
 const avatarImg =
   "http://s3.amazonaws.com/redqteam.com/isomorphic-reloaded-image/profilepic.png";
@@ -44,22 +40,12 @@ const LogoIcon = () => (
   </svg>
 );
 
-const Header = ({ router }) => {
+const DashboarHeader = ({ router }) => {
   // const { loggedIn } = useContext(AuthContext);
   const {isLoggedIn, user} = useSelector((state) => state.auth);
-  const handleStateChange = (status) => {
-    if (status.status === Sticky.STATUS_FIXED) {
-      dispatch(showTopSearchBar());
-    } else {
-      dispatch(hideTopSearchBar());
-    }
-  };
+ 
 
 
-  // const [{ searchVisibility }] = useContext(LayoutContext);
-  const searchVisibility = useSelector(
-    (state) => state.layout.searchVisibility
-  );
   const dispatch = useDispatch();
 
   const [state, setState] = useState(false);
@@ -70,13 +56,11 @@ const Header = ({ router }) => {
   const headerType = router.pathname === "/" ? "transparent" : "default";
 
   return (
-    <HeaderWrapper>
-      <Sticky top={0} innerZ={1001} activeClass="isHeaderSticky" onStateChange={handleStateChange}>
+    <HeaderWrapper >
+      <Sticky top={0} innerZ={1001} activeClass="isHeaderSticky" style={{display:"flex", justifyContent: "center"}}>
         <Navbar
           logo={
             <>
-              {headerType === "transparent" && <LogoIcon />}
-
               <Logo
                 withLink
                 linkTo="/"
@@ -91,14 +75,11 @@ const Header = ({ router }) => {
           avatar={<Logo src={avatarImg} />}
           profileMenu={<ProfileMenu avatar={<Logo src={avatarImg} />} />}
           headerType={headerType}
-          searchComponent={<NavbarSearch />}
           location={router}
-          searchVisibility={searchVisibility}
         />
         <MobileNavbar className={headerType}>
           <LogoArea>
             <>
-              {headerType === "transparent" && <LogoIcon />}
               <Logo
                 withLink
                 linkTo="/"
@@ -106,7 +87,6 @@ const Header = ({ router }) => {
                 title="GoRACKER"
               />
             </>
-            <NavbarSearch />
           </LogoArea>
           <Button
             className={`hamburg-btn ${state ? "active" : ""}`}
@@ -152,4 +132,4 @@ const Header = ({ router }) => {
   );
 };
 
-export default withRouter(Header);
+export default withRouter(DashboarHeader);

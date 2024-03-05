@@ -33,21 +33,21 @@ const MobileMenu = ({ className }) => {
   return (
     <ul className={className}>
       <li>
-        <ActiveLink href={HOME_PAGE}>Hotels</ActiveLink>
+        <ActiveLink href={HOME_PAGE}>Home</ActiveLink>
       </li>
       <li>
         <ActiveLink href={LISTING_POSTS_PAGE}>Listing</ActiveLink>
       </li>
       <li>
-        <ActiveLink href={PRICING_PLAN_PAGE}>Pricing</ActiveLink>
+        <ActiveLink href={"#"}>About Us</ActiveLink>
       </li>
-      {isLoggedIn && (
-        <li>
-          <ActiveLink href={AGENT_ACCOUNT_SETTINGS_PAGE}>
-            Account Settings
-          </ActiveLink>
-        </li>
-      )}
+      <li>
+        <ActiveLink href={"#"}>Reviews</ActiveLink>
+      </li>
+      <li>
+        <ActiveLink href={"#"}>Contact</ActiveLink>
+      </li>
+      
       {isLoggedIn && (
         <li>
           <button onClick={logOut}>Log Out</button>

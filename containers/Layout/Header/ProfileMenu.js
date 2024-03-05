@@ -39,7 +39,7 @@ export default function ProfileMenu({ avatar, route }) {
     setState(false);
   };
 
-  const DASHBOARD_ROUTE =  "/"+ role + "/dashboard" ;
+  const DASHBOARD_ROUTE =  "/dashboard" ;
  
 
 

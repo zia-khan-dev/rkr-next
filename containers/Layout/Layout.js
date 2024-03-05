@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { withRouter } from 'next/router';
-import DashboardLayout from './DashboardLayout';
+import DashboardLayout from './dashboard/DashboardLayout';
 import WebsiteLayout from './WebsiteLayout';
 import { useSelector } from 'react-redux';
 

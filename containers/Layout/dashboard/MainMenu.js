@@ -5,11 +5,32 @@ import ActiveLink from 'library/helpers/activeLink';
 import {
   HOME_PAGE,
   LISTING_POSTS_PAGE,
-  AGENT_PROFILE_PAGE,
-  PRICING_PLAN_PAGE,
+  AGENT_ACCOUNT_SETTINGS_PAGE
 } from 'settings/constant';
+import { useSelector } from 'react-redux';
 
 const MainMenu = ({ className, router }) => {
+
+  const { role } = useSelector((state) => state.auth);
+
+  const host = [
+    {
+      title: 'Overview',
+      href: HOME_PAGE,
+    },
+    {
+      title: 'Add Location',
+      href: HOME_PAGE,
+    },
+    {
+      title: 'Account Settings',
+      href: AGENT_ACCOUNT_SETTINGS_PAGE,
+    },
+    {
+      title: 'Account Settings',
+      href: HOME_PAGE,
+    },
+  ]
   return (
     <ul className={`ant-menu ${className}`}>
       <li>
@@ -17,7 +38,7 @@ const MainMenu = ({ className, router }) => {
           className={router.pathname === HOME_PAGE ? 'active' : ''}
           href={HOME_PAGE}
         >
-          Home
+          OverView
         </ActiveLink>
       </li>
       <li>

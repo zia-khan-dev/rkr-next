@@ -1409,8 +1409,8 @@
 		},
 		"location": {
 			"id": 52689,
-			"lat": 38.9234,
-			"lng": -77.04,
+			"lat": 39.1296,
+			"lng": -76.8830,
 			"formattedAddress": "3805 Hane Prairie",
 			"zipcode": "04605",
 			"city": "Hillsfurt",
@@ -1506,8 +1506,8 @@
 		},
 		"location": {
 			"id": 90805,
-			"lat": 38.8208,
-			"lng": -75.6997,
+			"lat": 39.1296,
+			"lng": -76.8830,
 			"formattedAddress": "24237 Eric Court",
 			"zipcode": "99131",
 			"city": "Ratkehaven",
@@ -1603,8 +1603,8 @@
 		},
 		"location": {
 			"id": 56947,
-			"lat": 40.7788,
-			"lng": -76.9741,
+			"lat": 39.1290,
+			"lng": -76.8821,
 			"formattedAddress": "1190 Pagac Port",
 			"zipcode": "21660",
 			"city": "Lake Nayeli",

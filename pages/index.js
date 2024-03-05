@@ -148,7 +148,7 @@ export default function HomePage({
       {/* <LocationGrid data={locationData} deviceType={deviceType} /> */}
       <Container fluid={true}>
         <SectionTitle
-          title={<Heading content="Locations Near me" />}
+          title={<Heading content="Locations Near you" />}
           link={
             <Link href={LISTING_POSTS_PAGE}>
               <a>Show all</a>

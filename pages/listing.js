@@ -27,6 +27,8 @@ import ListingWrapper, {
   ShowMapCheckbox,
 } from 'containers/Listing/Listing.style';
 import { useSelector } from 'react-redux';
+import {  filterByDistance } from '../library/helpers/get-api-data';
+import { useRouter } from 'next/router';
 
 const FilterDrawer = dynamic(() =>
   import('containers/Listing/Search/MobileSearchView')
@@ -34,22 +36,37 @@ const FilterDrawer = dynamic(() =>
 
 export default function ListingPage({ processedData, deviceType }) {
 
+  const router = useRouter();
+  console.log("processedData", processedData);
   const { query } = useSelector(state => state.search); // Accessing query state from Redux
   console.log("query", query);
 
   const statekey = searchStateKeyCheck(query);
+  console.log("statekey", statekey);
+
+  const { location_lat, location_lng } = router.query;
+
+
+
+  const filteredData = filterByDistance(processedData, location_lat, location_lng, 50); // Filter within 50 km
+  // console.log(filteredData);
+  
+  console.log("nearestLocation", filteredData, location_lat, location_lng);  
+  
   const [posts, setPosts] = useState(
     processedData.slice(0, LISTING_PAGE_POST_LIMIT) || []
   );
+  console.log(posts, "posts");
   const [loading, setLoading] = useState(false);
   const [showMap, setShowMap] = useState(false);
 
   useEffect(() => {
     if (statekey === true) {
-      const newData = searchedData(processedData);
+      const filteredLocations = filterByDistance(processedData, location_lat, location_lng, 50); // Filter within 50 km
+      const newData = searchedData(filteredLocations);
       setPosts(newData);
     } else {
-      setPosts(processedData.slice(0, LISTING_PAGE_POST_LIMIT) || []);
+      setPosts(filteredData.slice(0, LISTING_PAGE_POST_LIMIT) || []);
     }
   }, [statekey]);
 

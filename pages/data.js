@@ -4851,3 +4851,57 @@ export const demoData =  [
             ]
         }
     ]
+
+
+    // Function to calculate the distance between two points using Haversine formula
+function calculateDistance(lat1, lon1, lat2, lon2) {
+    const R = 6371; // Radius of the Earth in kilometers
+    const dLat = (lat2 - lat1) * Math.PI / 180;  // Convert degrees to radians
+    const dLon = (lon2 - lon1) * Math.PI / 180;
+    const a = 
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
+        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const distance = R * c; // Distance in kilometers
+    return distance;
+}
+
+// Function to filter objects based on distance from a given latitude and longitude
+function filterByDistance(data, targetLat, targetLng, maxDistance) {
+    return data.filter(item => {
+        const distance = calculateDistance(item.location.lat, item.location.lng, targetLat, targetLng);
+        return distance <= maxDistance;
+    });
+}
+
+// Usage example
+const processedData = [
+    {
+        "id": 1,
+        "agentId": 38076,
+        "title": "Handmade Wooden Mouse",
+        "image": {
+            "id": 90096,
+            "url": "url",
+            "thumb_url": "url"
+        },
+        "location": {
+            "id": 67404,
+            "lat": 40.706877,
+            "lng": -74.011265,
+            "formattedAddress": "52623 Donnie Roads",
+            "zipcode": "68225-1064",
+            "city": "Nestorview",
+            "state_long": "Washington",
+            "state_short": "WY",
+            "country_long": "Tanzania",
+            "country_short": "VN"
+        }
+    },
+    // Add more data objects here
+];
+
+const filteredData = filterByDistance(processedData, targetLat, targetLng, 50); // Filter within 50 km
+console.log(filteredData);
+
